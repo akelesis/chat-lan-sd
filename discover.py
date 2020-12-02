@@ -21,12 +21,12 @@ class Listener(ServiceListener):
         portas.append(info.port)
         print(f'Um servico foi encontrado. ', info)
 
-def main():
+def main(port):
     zeroconf = Zeroconf()
     listener = Listener()
     try:
         service_browser = ServiceBrowser(zeroconf, "_sd-chat-host._tcp.local.", listener)
-        msg_sender.requisicao(portas)
+        msg_sender.requisicao(portas, port)
 
     except KeyboardInterrupt:
         print("Interrompido!")

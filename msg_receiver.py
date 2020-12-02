@@ -6,15 +6,16 @@ from threading import Thread
 MAX_REQ = 5
 TAM_BUFFER = 1000
 
+ip = '192.168.5.4'
 
 def processar(conexao):
-    conexao.sendall(b'oi')
+    conexao.sendall(b'mensagem recebida com sucesso!')
     conexao.close()
 
 
 def escutar(port):
     print(port)
-    socket_bind_info = ('127.0.0.1', port)
+    socket_bind_info = (ip, port)
 
     sock = socket()
     sock.bind(socket_bind_info)
@@ -29,7 +30,7 @@ def escutar(port):
             if(dados_client):
                 th = Thread(target=processar, args=(conexao,))
                 th.start()
-                print("A mensagem: " + dados_client.decode("utf-8") + " foi recebida às " + datetime.now().strftime("%H:%M:%S, %m/%d/%Y"))
+                print(dados_client.decode("utf-8") + " --> " + datetime.now().strftime("%H:%M:%S, %d/%m/%Y"))
             if start is None:
                 start = datetime.now()
 

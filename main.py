@@ -1,8 +1,5 @@
-import advertise
-import discover
 from threading import Thread
+import user
 
-th = Thread(target=discover.main)
+th = Thread(target=user.main)
 th.start()
-th2 = Thread(target=advertise.main)
-th2.start()
